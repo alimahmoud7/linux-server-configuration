@@ -32,7 +32,7 @@ sudo update-locale LANG=en_US.utf8 LANGUAGE=en_US.utf8 LC_ALL=en_US.utf8
 sudo adduser grader
 sudo nano /etc/sudoers.d/grader 
 ```
-Then add the following text `grader ALL=(ALL) NOPASSWD:ALL`
+Then add the following text `grader ALL=(ALL) ALL`
 
 #### 4. Setup SSH keys for grader
 * On local machine 
@@ -70,12 +70,46 @@ sudo ufw allow 8000/tcp  `serve another app on the server`
 sudo ufw enable
 ```
 
-#### 7. Install Apache2 and mod-wsgi for python3 and Git
+#### 7. Configure fail2ban to monitor unsuccessful login attempts
+```
+sudo apt-get install fail2ban sendmail
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+sudo nano /etc/fail2ban/jail.local
+```
+Then Update the following:
+```
+destemail = [my email address]
+action = %(action_mwl)s
+
+[ssh]
+
+banaction = ufw-ssh
+port     = 2200
+```
+Create the ufw-ssh action referenced above:
+```
+sudo nano /etc/fail2ban/action.d/ufw-ssh.conf
+```
+Add the following:
+```
+[Definition]
+actionstart =
+actionstop =
+actioncheck =
+actionban = ufw insert 1 deny from <ip> to any app OpenSSH
+actionunban = ufw delete deny from <ip> to any app OpenSSH
+```
+Finally, restart fail2ban:
+```
+sudo service fail2ban restart
+```
+
+#### 8. Install Apache2 and mod-wsgi for python3 and Git
 ```
 sudo apt-get install apache2 libapache2-mod-wsgi-py3 git
 ```
 
-#### 8. Install and configure PostgreSQL
+#### 9. Install and configure PostgreSQL
 ```
 sudo apt-get install libpq-dev python3-dev
 sudo apt-get install postgresql postgresql-contrib
@@ -93,7 +127,7 @@ GRANT ALL ON SCHEMA public TO catalog;
 exit
 ```
 
-#### 9. Clone the Catalog app from GitHub and Configure it
+#### 10. Clone the Catalog app from GitHub and Configure it
 ```
 cd /var/www/
 sudo mkdir catalog
@@ -127,7 +161,7 @@ pip3 install -r requirements.txt
 ```
 Edit Authorized JavaScript origins
 
-#### 10. Clone the Neighborhood map app from GitHub
+#### 11. Clone the Neighborhood map app from GitHub
 ```
 cd /var/www/
 sudo mkdir map
@@ -136,7 +170,7 @@ git clone https://github.com/AliMahmoud7/neighborhood-map-fsnd
 ```
 Go to [54.202.207.12:8000](http://54.202.207.12:8000/) to view it
 
-#### 11. Configure apache server
+#### 12. Configure apache server
 ```
 sudo nano /etc/apache2/sites-enabled/000-default.conf
 ```
@@ -180,7 +214,7 @@ LISTEN 8000
 </VirtualHost>
 ```
 
-#### 12. Restart Apache Server
+#### 13. Restart Apache Server
 ```
 sudo service apache2 restart
 ```
@@ -193,6 +227,8 @@ sudo service apache2 restart
 * [Set Up Apache Virtual Hosts on Ubuntu ](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts)
 * [mod_wsgi documentation](https://modwsgi.readthedocs.io/en/develop/)
 * [Automatic Security Updates](https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_the_.22unattended-upgrades.22_package)
+* [Protect SSH with Fail2Ban](https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04)
+* [UFW with Fail2ban](https://askubuntu.com/questions/54771/potential-ufw-and-fail2ban-conflicts)
 * [Fix locale issue](https://askubuntu.com/questions/162391/how-do-i-fix-my-locale-issue)
 * [Ask Ubuntu](https://askubuntu.com/)
 * [Stack Overflow](https://stackoverflow.com/)
