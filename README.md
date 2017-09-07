@@ -144,9 +144,7 @@ Then add the following content:
   <Directory /var/www/catalog>
     WSGIProcessGroup catalog
     WSGIApplicationGroup %{GLOBAL}
-    <Files catalog.wsgi>
-      Require all granted
-    </Files>
+    Require all granted
   </Directory>
 
   ErrorLog ${APACHE_LOG_DIR}/error.log
@@ -162,10 +160,7 @@ LISTEN 8000
   DocumentRoot /var/www/map
   ServerAdmin ali.mahmoud@engineer.com
 
-  <Directory /var/www/map>
-    <Files index.html>
-      Require all granted
-    </Files>
+ <Directory /var/www/map/.git>
     Require all denied
   </Directory>
 
