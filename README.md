@@ -174,3 +174,14 @@ LISTEN 8000
 ```
 sudo service apache2 restart
 ```
+
+### Resources
+* [Amazon EC2 Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
+* [Flask mod_wsgi (Apache)](http://flask.pocoo.org/docs/0.12/deploying/mod_wsgi/)
+* [Apache Server Configuration Files](https://httpd.apache.org/docs/current/configuring.html)
+* [Deploy a Flask Application on an Ubuntu VPS](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)
+* [Set Up Apache Virtual Hosts on Ubuntu ](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts)
+* [mod_wsgi documentation](https://modwsgi.readthedocs.io/en/develop/)
+* [Fix locale issue](https://askubuntu.com/questions/162391/how-do-i-fix-my-locale-issue)
+* [Ask Ubuntu](https://askubuntu.com/)
+* [Stack Overflow](https://stackoverflow.com/)
