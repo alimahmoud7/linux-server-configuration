@@ -15,11 +15,18 @@ This project was created for the *Full Stack Web Developer Nanodegree* at [**Uda
 sudo apt-get update
 sudo apt-get upgrade
 ```
+Enable automatic security updates
+```
+sudo apt-get install unattended-upgrades
+sudo dpkg-reconfigure --priority=low unattended-upgrades
+```
+
 #### 2. Change timezone to UTC and Fix language issues 
 ```
 sudo timedatectl set-timezone UTC
 sudo update-locale LANG=en_US.utf8 LANGUAGE=en_US.utf8 LC_ALL=en_US.utf8
 ```
+
 #### 3. Create a new user grader and Give him `sudo` access
 ```
 sudo adduser grader
@@ -62,10 +69,12 @@ sudo ufw allow ntp
 sudo ufw allow 8000/tcp  `serve another app on the server`
 sudo ufw enable
 ```
+
 #### 7. Install Apache2 and mod-wsgi for python3 and Git
 ```
 sudo apt-get install apache2 libapache2-mod-wsgi-py3 git
 ```
+
 #### 8. Install and configure PostgreSQL
 ```
 sudo apt-get install libpq-dev python3-dev
@@ -83,6 +92,7 @@ GRANT ALL ON SCHEMA public TO catalog;
 \q
 exit
 ```
+
 #### 9. Clone the Catalog app from GitHub and Configure it
 ```
 cd /var/www/
@@ -182,6 +192,7 @@ sudo service apache2 restart
 * [Deploy a Flask Application on an Ubuntu VPS](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)
 * [Set Up Apache Virtual Hosts on Ubuntu ](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts)
 * [mod_wsgi documentation](https://modwsgi.readthedocs.io/en/develop/)
+* [Automatic Security Updates](https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_the_.22unattended-upgrades.22_package)
 * [Fix locale issue](https://askubuntu.com/questions/162391/how-do-i-fix-my-locale-issue)
 * [Ask Ubuntu](https://askubuntu.com/)
 * [Stack Overflow](https://stackoverflow.com/)
