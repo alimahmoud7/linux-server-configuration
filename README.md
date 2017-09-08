@@ -182,7 +182,7 @@ Then add the following content:
   ServerAlias ec2-54-202-207-12.us-west-2.compute.amazonaws.com
   ServerAdmin ali.mahmoud@engineer.com
   DocumentRoot /var/www/catalog
-  WSGIDaemonProcess catalog user=grader group=grader python-home=/var/www/catalog/env
+  WSGIDaemonProcess catalog user=grader group=grader
   WSGIScriptAlias / /var/www/catalog/catalog.wsgi
 
   <Directory /var/www/catalog>
@@ -213,8 +213,43 @@ LISTEN 8000
   CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
+#### 13. Configure `mod_wsgi` to work with python 3.6
+* Building python 3.6 from source
+```
+sudo apt install build-essential
+sudo apt install libssl-dev zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev 
+sudo apt install libgdbm-dev libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev tk-dev
 
-#### 13. Restart Apache Server
+wget https://www.python.org/ftp/python/3.6.2/Python-3.6.2.tar.xz
+tar xf Python-3.6.2.tar.xz
+cd Python-3.6.2
+./configure --enable-shared --enable-optimizations
+make
+sudo make altinstall
+sudo cp libpython3.6m.so.1.0 /usr/local/lib
+sudo cp libpython3.6m.so.1.0 /usr/lib
+ln -fs /usr/local/bin/python3.6 /usr/bin/python3.6
+sudo nano /etc/ld.so.conf.d/python36.conf
+```
+Then add the following text:
+```
+/usr/local/lib/python3.6
+/usr/local/lib
+```
+
+* Install the mod_wsgi 4.5.18 or latest version
+```
+wget "https://github.com/GrahamDumpleton/mod_wsgi/archive/4.5.18.tar.gz"
+tar xf 4.5.18.tar.gz
+cd mod_wsgi-4.5.18
+./configure --with-python=/usr/local/bin/python3.6
+make
+sudo make install
+```
+* **Note:** Make sure that your virtual environment using the same version of python used by `mod_wsgi`,
+When create a new one use `-p` or `--python=` flag to specify the python interpreter path
+
+#### 14. Restart Apache Server
 ```
 sudo service apache2 restart
 ```
