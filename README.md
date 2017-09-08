@@ -247,7 +247,7 @@ make
 sudo make install
 ```
 * **Note:** Make sure that your virtual environment using the same version of python used by `mod_wsgi`,
-When create a new one use `-p` or `--python=` flag to specify the python interpreter path
+When you create a new one with `virtualenv` tool use `-p` or `--python=` flag to specify the python interpreter path, In my case is `/usr/local/bin/python3.6` so use `virtualenv --python=/usr/local/bin/python3.6 env`
 
 #### 14. Restart Apache Server
 ```
