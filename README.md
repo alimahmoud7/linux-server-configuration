@@ -42,7 +42,7 @@ Then choose the path for storing public and private keys
 ```
 sudo su - grader
 mkdir .ssh
-cat .ssh/authorized_keys 
+touch .ssh/authorized_keys 
 sudo chmod 700 .ssh
 sudo chmod 600 .ssh/authorized_keys 
 nano .ssh/authorized_keys 
