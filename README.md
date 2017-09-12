@@ -70,7 +70,7 @@ sudo ufw allow 8000/tcp  `serve another app on the server`
 sudo ufw enable
 ```
 
-#### 7. Configure fail2ban to monitor unsuccessful login attempts
+#### 7. *Extra Step* Configure fail2ban to monitor unsuccessful login attempts
 ```
 sudo apt-get install fail2ban sendmail
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
@@ -165,7 +165,7 @@ pip3 install -r requirements.txt
 ```
 Edit Authorized JavaScript origins
 
-#### 11. Clone the Neighborhood map app from GitHub
+#### 11. *Extra Step* Clone the Neighborhood map app from GitHub
 ```
 cd /var/www/
 sudo mkdir map
@@ -217,7 +217,7 @@ LISTEN 8000
   CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
-#### 13. Configure `mod_wsgi` to work with python 3.6
+#### 13. *Extra Step* Configure `mod_wsgi` to work with python 3.6
 * Building python 3.6 from source
 ```
 sudo apt install build-essential
