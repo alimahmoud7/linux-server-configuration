@@ -1,5 +1,4 @@
 # Linux Server Configuration Project
-This project was created for the *Full Stack Web Developer Nanodegree* at [**Udacity**](https://www.udacity.com/degrees/full-stack-web-developer-nanodegree--nd004).
 
 ### About the project
 > A baseline installation of a Linux distribution on a virtual machine and prepare it to host web applications, to include installing updates, securing it from a number of attack vectors and installing/configuring web and database servers
@@ -7,6 +6,7 @@ This project was created for the *Full Stack Web Developer Nanodegree* at [**Uda
 * IP Address: [54.202.207.12](http://54.202.207.12/)
 * SSH Port: 2200
 * URL using DNS: [ec2-54-202-207-12.us-west-2.compute.amazonaws.com](http://ec2-54-202-207-12.us-west-2.compute.amazonaws.com/)
+
 
 ### Steps Followed to Configure the server
 
@@ -257,6 +257,7 @@ When you create a new one with `virtualenv` tool use `-p` or `--python=` flag to
 ```
 sudo service apache2 restart
 ```
+
 
 ### Resources
 * [Amazon EC2 Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
