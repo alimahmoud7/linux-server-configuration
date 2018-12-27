@@ -3,9 +3,9 @@
 ### About the project
 > A baseline installation of a Linux distribution on a virtual machine and prepare it to host web applications, to include installing updates, securing it from a number of attack vectors and installing/configuring web and database servers
 
-* IP Address: [54.202.207.12](http://54.202.207.12/)
-* SSH Port: 2200
-* URL using DNS: [ec2-54-202-207-12.us-west-2.compute.amazonaws.com](http://ec2-54-202-207-12.us-west-2.compute.amazonaws.com/)
+* IP Address: []()
+* SSH Port: 
+* URL using DNS: []()
 
 
 ### Steps Followed to Configure the server
