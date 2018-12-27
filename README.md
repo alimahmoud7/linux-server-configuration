@@ -108,6 +108,7 @@ sudo service fail2ban restart
 ```
 sudo apt-get install apache2 libapache2-mod-wsgi-py3 git
 ```
+Note: For Python2 replace `libapache2-mod-wsgi-py3` with `libapache2-mod-wsgi`
 
 #### 9. Install and configure PostgreSQL
 ```
@@ -147,15 +148,18 @@ Then add the following in `catalog.wsgi` file
 import sys
 sys.stdout = sys.stderr
 
+# Add this if you'll create a virtual environment, So you need to activate it
+# -------
 activate_this = '/var/www/catalog/env/bin/activate_this.py'
 with open(activate_this) as file_:
     exec(file_.read(), dict(__file__=activate_this))
+# -------
 
 sys.path.insert(0,"/var/www/catalog")
 
 from app import app as application
 ```
-Setup virtual environment and Install app dependencies 
+Optional but recommended: Setup virtual environment and Install app dependencies 
 ```
 sudo apt-get install python3-pip
 sudo -H pip3 install virtualenv
@@ -172,7 +176,7 @@ sudo mkdir map
 sudo chown grader:grader map
 git clone https://github.com/AliMahmoud7/neighborhood-map-fsnd
 ```
-Go to [54.202.207.12:8000](http://54.202.207.12:8000/) to view it
+Go to [<Instance_IP>:8000](<Instance_IP>:8000/) to view it
 
 #### 12. Configure apache server
 ```
@@ -182,9 +186,9 @@ Then add the following content:
 ```
 # serve catalog app
 <VirtualHost *:80>
-  ServerName 54.202.207.12
-  ServerAlias ec2-54-202-207-12.us-west-2.compute.amazonaws.com
-  ServerAdmin ali.mahmoud@engineer.com
+  ServerName <IP_Address or Domain>
+  ServerAlias <DNS>
+  ServerAdmin <Email>
   DocumentRoot /var/www/catalog
   WSGIDaemonProcess catalog user=grader group=grader
   WSGIScriptAlias / /var/www/catalog/catalog.wsgi
@@ -200,13 +204,13 @@ Then add the following content:
   CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 
-# Serve another project on the server (different port)
+# Serve another project on the server with different port (Extra)
 LISTEN 8000
 <VirtualHost *:8000>
-  ServerName 54.202.207.12
-  ServerAlias ec2-54-202-207-12.us-west-2.compute.amazonaws.com
+  ServerName <IP_Address or Domain>
+  ServerAlias <DNS>
+  ServerAdmin <Email>
   DocumentRoot /var/www/map
-  ServerAdmin ali.mahmoud@engineer.com
 
  <Directory /var/www/map/.git>
     Require all denied
