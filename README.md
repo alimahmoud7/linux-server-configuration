@@ -137,7 +137,7 @@ engine = create_engine('postgresql://catalog:password@localhost/catalog')
 cd /var/www/
 sudo mkdir catalog
 sudo chown grader:grader catalog
-git clone https://github.com/AliMahmoud7/item-catalog-fsnd catalog
+git clone <your_repo_url> catalog
 cd catalog
 git checkout production
 nano catalog.wsgi
