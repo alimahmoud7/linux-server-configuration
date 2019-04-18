@@ -9,7 +9,7 @@
 
 
 ### Steps Followed to Configure the server
-
+If you speak Arabic, you should watch this video [Discuss Linux Server Configuration Project](https://youtu.be/v9VvJvTyuH0)
 #### 1. Update all packages
 ```
 sudo apt-get update
