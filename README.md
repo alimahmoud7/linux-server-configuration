@@ -14,6 +14,7 @@
 ```
 sudo apt-get update
 sudo apt-get upgrade
+sudo apt-get dist-upgrade
 ```
 Enable automatic security updates
 ```
@@ -167,6 +168,12 @@ virtualenv env
 source env/bin/activate
 pip3 install -r requirements.txt
 ```
+- If you don't have `requirements.txt` file, you can use
+```
+pip3 install flask packaging oauth2client redis passlib flask-httpauth
+pip3 install sqlalchemy flask-sqlalchemy psycopg2 bleach requests
+```
+
 Edit Authorized JavaScript origins
 
 #### 11. `Extra Step` Clone the Neighborhood map app from GitHub
@@ -204,7 +211,7 @@ Then add the following content:
   CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 
-# Serve another project on the server with different port (Extra)
+# Serve another project on the server with different port (Extra Step)
 LISTEN 8000
 <VirtualHost *:8000>
   ServerName <IP_Address or Domain>
@@ -257,8 +264,9 @@ sudo make install
 * **Note:** Make sure that your virtual environment using the same version of python used by `mod_wsgi`,
 When you create a new one with `virtualenv` tool use `-p` or `--python=` flag to specify the python interpreter path, In my case is `/usr/local/bin/python3.6` so use `virtualenv --python=/usr/local/bin/python3.6 env`
 
-#### 14. Restart Apache Server
+#### 14. Reload & Restart Apache Server
 ```
+sudo service apache2 reload
 sudo service apache2 restart
 ```
 
