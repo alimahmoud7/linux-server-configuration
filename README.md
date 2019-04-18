@@ -139,7 +139,7 @@ sudo mkdir catalog
 sudo chown grader:grader catalog
 git clone <your_repo_url> catalog
 cd catalog
-git checkout production
+git checkout production # If you have a diffrent branch!
 nano catalog.wsgi
 ```
 Then add the following in `catalog.wsgi` file
